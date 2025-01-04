@@ -6,18 +6,22 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults.FocusedBorderThickness
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -29,6 +33,8 @@ import androidx.compose.ui.unit.sp
 import com.example.love_compatibility.ui.theme.Love_compatibilityTheme
 import com.example.love_compatibility.ui.theme.lighteggplant
 import com.example.love_compatibility.ui.theme.marckscript
+import com.example.love_compatibility.ui.theme.pipink
+import com.example.love_compatibility.ui.theme.purplypink
 import kotlin.random.Random
 
 class MainActivity : ComponentActivity() {
@@ -38,8 +44,8 @@ class MainActivity : ComponentActivity() {
         setContent {
 
             val calculate = remember { mutableStateOf(false) }
-            val she = remember { mutableStateOf(" ") }
-            val he = remember { mutableStateOf(" ") }
+            val she = remember { mutableStateOf("") }
+            val he = remember { mutableStateOf("") }
             val rezult = remember { mutableStateOf("") }
 
             Love_compatibilityTheme {
@@ -54,10 +60,25 @@ class MainActivity : ComponentActivity() {
                         Column(
                             modifier = Modifier
                                 .padding(innerPadding)
+                                .fillMaxSize(),
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.SpaceBetween
                         ) {
-                            Text(text = "hi")
+                            Text(
+                                text = "RAEWDA PRODUCTION",
+                                modifier = Modifier,
+                                fontFamily = marckscript,
+                                fontSize = 20.sp,
+                                color = lighteggplant
+                            )
+                            Text(
+                                text = "Love&Compatibility",
+                                modifier = Modifier,
+                                fontFamily = marckscript,
+                                fontSize = 50.sp,
+                                color = lighteggplant
+                            )
 
-                            Text(text = "hi hi hi")
 
                             //textfield she
                             OutlinedTextField(
@@ -67,17 +88,23 @@ class MainActivity : ComponentActivity() {
                                 },
                                 modifier = Modifier
                                     .padding(top = 10.dp, start = 15.dp, end = 20.dp),
-                                colors = TextFieldDefaults.colors(cursorColor = lighteggplant),
+                                colors = TextFieldDefaults.colors(
+                                    cursorColor = lighteggplant,
+                                    focusedContainerColor = pipink,
+                                    unfocusedContainerColor = pipink,
+                                    focusedIndicatorColor = lighteggplant,
+                                    unfocusedIndicatorColor = purplypink
+                                    ),
                                 enabled = true,
                                 readOnly = false,
                                 placeholder = { Text("her name",
-                                    color = Color.Magenta,
+                                    color = lighteggplant,
                                     fontFamily = marckscript,
                                     fontSize = 40.sp,) },
                                 textStyle = TextStyle(
                                     fontFamily = marckscript,
                                     fontSize = 40.sp,
-                                    color = Color.Magenta
+                                    color = lighteggplant
                                 ),
                                 maxLines = 1,
                                 shape = CircleShape
@@ -92,17 +119,23 @@ class MainActivity : ComponentActivity() {
                                 },
                                 modifier = Modifier
                                     .padding(top = 10.dp, start = 15.dp, end = 20.dp),
-                                colors = TextFieldDefaults.colors(cursorColor = lighteggplant),
+                                colors = TextFieldDefaults.colors(
+                                    cursorColor = lighteggplant,
+                                    focusedContainerColor = pipink,
+                                    unfocusedContainerColor = pipink,
+                                    focusedIndicatorColor = lighteggplant,
+                                    unfocusedIndicatorColor = purplypink
+                                ),
                                 enabled = true,
                                 readOnly = false,
                                 placeholder = { Text("his name",
-                                    color = Color.Magenta,
+                                    color = lighteggplant,
                                     fontFamily = marckscript,
                                     fontSize = 40.sp,) },
                                 textStyle = TextStyle(
                                     fontFamily = marckscript,
                                     fontSize = 40.sp,
-                                    color = Color.Magenta
+                                    color = lighteggplant
                                 ),
                                 maxLines = 1,
                                 shape = CircleShape
@@ -115,23 +148,44 @@ class MainActivity : ComponentActivity() {
                                     calculate.value = true
                                     rezult.value = Random.nextInt(0,100).toString()
                                 },
-                                modifier = Modifier
+                                modifier = Modifier,
+                                colors = ButtonDefaults.buttonColors(lighteggplant)
                             ) {
-                                Text(text = "calculate")
+                                Text(
+                                    text = "calculate",
+                                    modifier = Modifier,
+                                    fontFamily = marckscript,
+                                    fontSize = 40.sp,
+                                    color = pipink
+                                )
                             } //calculate
 
-                            Text(text = she.value + " +" + he.value + " = " + rezult.value + "%")
+                            Text(
+                                text = she.value + " + " + he.value + " = " + rezult.value + "%",
+                                modifier = Modifier,
+                                fontFamily = marckscript,
+                                fontSize = 50.sp,
+                                color = lighteggplant
+                            )
 
                             //again
                             Button(
                                 onClick = {
                                     calculate.value = false
-                                    she.value = " "
-                                    he.value = " "
+                                    she.value = ""
+                                    he.value = ""
                                     rezult.value = ""
-                                }
+                                },
+                                modifier = Modifier,
+                                colors = ButtonDefaults.buttonColors(lighteggplant)
                             ) {
-                                Text(text = "again")
+                                Text(
+                                    text = "again",
+                                    modifier = Modifier,
+                                    fontFamily = marckscript,
+                                    fontSize = 40.sp,
+                                    color = pipink
+                                    )
                             } //again
                         }
                     }

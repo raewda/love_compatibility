@@ -12,3 +12,4 @@ val Pink40 = Color(0xFF7D5260)
 
 val purplypink = Color(0xFFF473EC)
 val lighteggplant =  Color(0xFF863f82)
+val pipink = Color(0xFFFFA3F9)
