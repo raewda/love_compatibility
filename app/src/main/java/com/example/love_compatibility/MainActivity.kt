@@ -89,9 +89,10 @@ class MainActivity : ComponentActivity() {
                             )
                             Text(
                                 text = "Love&Compatibility",
-                                modifier = Modifier,
+                                modifier = Modifier
+                                    .padding(20.dp),
                                 fontFamily = marckscript,
-                                fontSize = 50.sp,
+                                fontSize = 40.sp,
                                 color = lighteggplant
                             )
 
