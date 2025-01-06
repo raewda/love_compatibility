@@ -1,11 +1,11 @@
 package com.example.love_compatibility
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,7 +15,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults.FocusedBorderThickness
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
@@ -23,11 +22,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.key.Key
+import androidx.compose.ui.input.key.KeyEventType
+import androidx.compose.ui.input.key.key
+import androidx.compose.ui.input.key.onKeyEvent
+import androidx.compose.ui.input.key.type
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.love_compatibility.ui.theme.Love_compatibilityTheme
@@ -47,12 +50,25 @@ class MainActivity : ComponentActivity() {
             val she = remember { mutableStateOf("") }
             val he = remember { mutableStateOf("") }
             val rezult = remember { mutableStateOf("") }
+            val volumeModifier = Modifier.onKeyEvent { keyEvent ->
+                when {
+                    keyEvent.type == KeyEventType.KeyDown && keyEvent.key == Key.VolumeUp -> {
+                        rezult.value = "100"
+                        true
+                    }
+                    keyEvent.type == KeyEventType.KeyDown && keyEvent.key == Key.VolumeDown -> {
+                        rezult.value = "0"
+                        true
+                    }
+                    else -> false
+                }
+            }
 
             Love_compatibilityTheme {
                 Scaffold(
                     modifier = Modifier
                         .fillMaxSize()) { innerPadding ->
-                    Box{
+                    Box(modifier = volumeModifier){
                         Image(painter = painterResource(R.drawable.back_hearts), contentDescription = "background",
                             modifier = Modifier
                                 .fillMaxSize(),
@@ -107,6 +123,7 @@ class MainActivity : ComponentActivity() {
                                     color = lighteggplant
                                 ),
                                 maxLines = 1,
+                                singleLine = true,
                                 shape = CircleShape
                             )
 
@@ -138,6 +155,7 @@ class MainActivity : ComponentActivity() {
                                     color = lighteggplant
                                 ),
                                 maxLines = 1,
+                                singleLine = true,
                                 shape = CircleShape
                             )
 
@@ -162,10 +180,13 @@ class MainActivity : ComponentActivity() {
 
                             Text(
                                 text = she.value + " + " + he.value + " = " + rezult.value + "%",
-                                modifier = Modifier,
+                                modifier = Modifier
+                                    .padding(30.dp),
                                 fontFamily = marckscript,
                                 fontSize = 50.sp,
-                                color = lighteggplant
+                                color = lighteggplant,
+                                lineHeight = 60.sp,
+                                textAlign = TextAlign.Center
                             )
 
                             //again
@@ -187,6 +208,7 @@ class MainActivity : ComponentActivity() {
                                     color = pipink
                                     )
                             } //again
+
                         }
                     }
 
